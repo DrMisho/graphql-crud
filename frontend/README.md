@@ -1,4 +1,4 @@
-# booksql-vue
+# frontend
 
 ## Project setup
 ```
