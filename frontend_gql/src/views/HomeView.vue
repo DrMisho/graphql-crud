@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <router-link to="/books/add">add a Book</router-link>
     <ApolloQuery :query="categoriesQuery">
     <!-- The result will automatically updated -->
     <template slot-scope="{ result: { data }, isLoading }">
