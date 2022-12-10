@@ -1,6 +1,7 @@
-{
+query {
     categories {
         id
         name
     }
+    
 }
