@@ -1,18 +1,21 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <ApolloQuery :query="gql => gql`query categories {categories {id name }}`">
+      <template v-slot="{ result: { data, loading } }">
+        <div v-if="loading">Loading...</div>
+        <ul v-else>
+          <li v-for="category of data.categories" :key="category.id" class="user">
+            {{ category.name }}
+          </li>
+        </ul>
+      </template>
+    </ApolloQuery>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+  name: 'HomeView'
 }
 </script>
