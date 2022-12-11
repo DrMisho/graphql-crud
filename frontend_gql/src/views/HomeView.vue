@@ -35,7 +35,7 @@
                   <li class="mb-6">
                     <a href="#" class="text-black hover:text-gray-600" @click.prevent="selectCategory('featured')">Featured</a>
                   </li>
-                  <li href="#" v-for="category of data.categories" :key="category.id" @click.prevent="selectCategory(category.id)" class="mb-6">
+                  <li href="#" v-for="category of data.categories" :key="category.id" @click.prevent="selectCategory(parseInt(category.id))" class="mb-6">
                     <a href="">{{ category.name }}</a>
                   </li>
                   <li class="mb-6">
@@ -80,61 +80,6 @@
         </div>
       </div>
     </div>
-
-    
-    
-
-  <!-- <div v-if="selectedCategory === 'all'">
-    <ApolloQuery :query="query">
-      <template slot-scope="{ result: { data }, isLoading }">
-        <div v-if="isLoading">Loading...</div>
-        <div v-else>
-          <div v-for="book of data.books" :key="book.id" class="link-margin">
-            <router-link :to="`/books/${book.id}`" >
-              {{ book.id }} - {{ book.title }}
-            </router-link>
-            <div>{{ book.author }}</div>
-            <img :src="book.image" alt="cover image" style="width: 15%; height: 50%;">
-          </div>
-        </div>
-      </template>
-    </ApolloQuery>
-  </div>
-
-  <div v-else-if="selectedCategory === 'featured'">
-    <ApolloQuery :query="query" :variables="{featured : true}">
-      <template slot-scope="{ result: { data }, isLoading }">
-        <div v-if="isLoading">Loading...</div>
-        <div v-else>
-          <div v-for="book of data.booksByFeatured" :key="book.id" class="link-margin">
-            <router-link :to="`/books/${book.id}`" >
-              {{ book.id }} - {{ book.title }}
-            </router-link>
-            <div>{{ book.author }}</div>
-            <img :src="book.image" alt="cover image" style="width: 15%; height: 50%;">
-          </div>
-        </div>
-      </template>
-    </ApolloQuery>
-  </div>
-
-  <div v-else>
-    <ApolloQuery :query="query" :variables="{id: selectedCategory}">
-      <template slot-scope="{ result: { data }, isLoading }">
-        <div v-if="isLoading">Loading...</div>
-        <div v-else>
-          <div v-for="book of data.category.books" :key="book.id" class="link-margin">
-            <router-link :to="`/books/${book.id}`"  >
-              {{ book.id }} - {{ book.title }}
-            </router-link>
-            <div>{{ book.author }}</div>
-            <img :src="book.image" alt="cover image" style="width: 15%; height: 50%;">
-          </div>
-        </div>
-      </template>
-    </ApolloQuery>
-  </div> -->
-
   </div>
 </template>
 
@@ -167,11 +112,11 @@ export default {
   methods: {
     selectCategory(category)
     {
-      if (category == 'all')
+      if (category === 'all')
       {
         this.query = booksQuery;
       }
-      else if(category == 'featured')
+      else if(category === 'featured')
       {
         this.query = booksFeaturedQuery;
       }
@@ -180,6 +125,7 @@ export default {
         this.query = categoryQuery;
       }
       this.selectedCategory = category;
+      console.log(this.selectedCategory, this.query) 
     }
   }
 }

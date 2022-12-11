@@ -21,8 +21,9 @@
               <a :href="data.book.link" target="_blank" class="border border-purple-700 border-solid rounded text-purple-800 px-4 py-4 hover:bg-purple-700 hover:text-white">Link</a>
             </div>
             <div class="text-lg text-gray-700 leading-normal">
-              <router-link :to="`/books/${data.book.id}/edit`" class="link-margin">Edit</router-link>
-              <a href="#" class="link-margin" @click.prevent="deleteBook">Delete</a>
+              <router-link :to="`/books/${data.book.id}/edit`" >Edit</router-link>
+              &middot;
+              <a href="#" @click.prevent="deleteBook">Delete</a>
             </div>
           </div>
         </div>

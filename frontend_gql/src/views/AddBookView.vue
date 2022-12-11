@@ -1,32 +1,32 @@
 <template>
-  <div class="create">
-    <h1>Create Book</h1>
+  <div class="create container mt-12">
+    <h1 class="mb-4">Create Book</h1>
     <form action="" method="POST" @submit.prevent="addBook">
         <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" name="title" id="title" v-model="title">
+            <label class="text-bold" for="title">Title</label>
+            <input class="border border-purple-800 border-radius h-8" type="text" name="title" id="title" v-model="title">
         </div>
         <div class="form-group">
-            <label for="author">Author</label>
-            <input type="text" name="author" id="author" v-model="author">
+            <label class="text-bold" for="author">Author</label>
+            <input class="border border-purple-800 border-radius h-8" type="text" name="author" id="author" v-model="author">
         </div>
         <div class="form-group">
-            <label for="image">Image</label>
-            <input type="text" name="image" id="image" v-model="image">
+            <label class="text-bold" for="image">Image</label>
+            <input class="border border-purple-800 border-radius h-8" type="text" name="image" id="image" v-model="image">
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
-            <input type="text" name="description" id="description" v-model="description">
+            <label class="text-bold" for="description">Description</label>
+            <textarea name="description" id="description" cols="50" rows="30" class="border border-purple-800 border-radius h-8" v-model="description"></textarea>
         </div>
         <div class="form-group">
-            <label for="link">Link</label>
-            <input type="text" name="link" id="link" v-model="link">
+            <label class="text-bold" for="link">Link</label>
+            <input class="border border-purple-800 border-radius h-8" type="text" name="link" id="link" v-model="link">
         </div>
         <div class="form-group">
-            <label><input type="checkbox" name="featured" v-model="featured">Featured</label>
+            <label class="text-bold"><input type="checkbox" name="featured" v-model="featured">Featured</label>
         </div>
         <div class="form-group">
-            <label for="link">Category</label>
+            <label class="text-bold" for="link">Category</label>
             <ApolloQuery :query="require('@/graphql/queries/Categories.gql')">
                 <!-- The result will automatically updated -->
                 <template slot-scope="{ result: { data }, isLoading }">
@@ -91,8 +91,13 @@ export default {
     .form-group {
         margin-bottom: 32px;
     }
-    input[type="text"] {
+    input[type="text"] textarea {
         padding: 10px 14px;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+    }
+    label {
+        display: block;
     }
     button {
         padding: 16px;
