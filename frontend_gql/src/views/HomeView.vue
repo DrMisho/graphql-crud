@@ -46,22 +46,13 @@
             </ApolloQuery>
           </div>
         </div>
-        <div class="w-3/4 px-4 flex flex-wrap mb-12">
-          <div>
+        <div class="w-3/4 px-4 mb-12">
             <ApolloQuery :query="query" v-if="selectedCategory === 'all'">
               <template slot-scope="{ result: { data }, isLoading }">
                 <div v-if="isLoading">Loading...</div>
                 <div v-else class="flex flex-wrap">
                   <div v-for="book of data.books" :key="book.id" class="w-1/3 px-4 mb-12">
-                    <router-link :to="`/books/${book.id}`" >
-                      <img :src="book.image" alt="cover image" class="h-64 mb-2">
-                    </router-link>
-                    <div class="w-3/5">
-                      <router-link :to="`/books/${book.id}`" class="text-lg font-bold text-black hover:text-gray-700 mb-3">
-                        {{ book.title }}
-                      </router-link>
-                      <div class="text-gray-600">{{ book.author }}</div>
-                    </div>
+                    <book-listing :book="book"></book-listing>
                   </div>
                 </div>
               </template>
@@ -71,38 +62,21 @@
                 <div v-if="isLoading">Loading...</div>
                 <div v-else class="flex flex-wrap">
                   <div v-for="book of data.booksByFeatured" :key="book.id"  class="w-1/3 px-4 mb-12">
-                    <router-link :to="`/books/${book.id}`" >
-                      <img :src="book.image" alt="cover image" class="h-64 mb-2">
-                    </router-link>
-                    <div class="w-3/5">
-                      <router-link :to="`/books/${book.id}`" class="text-lg font-bold text-black hover:text-gray-700 mb-3" >
-                        {{ book.title }}
-                      </router-link>
-                      <div class="text-gray-600">{{ book.author }}</div>
-                    </div>
+                    <book-listing :book="book"></book-listing>
                   </div>
                 </div>
               </template>
             </ApolloQuery>
-            <ApolloQuery :query="query" :variables="{id: selectedCategory}" v-else>
+            <ApolloQuery v-else :query="query" :variables="{id: selectedCategory}" >
               <template slot-scope="{ result: { data }, isLoading }">
                 <div v-if="isLoading">Loading...</div>
                 <div v-else class="flex flex-wrap">
                   <div v-for="book of data.category.books" :key="book.id"  class="w-1/3 px-4 mb-12">
-                    <router-link :to="`/books/${book.id}`" >
-                      <img :src="book.image" alt="cover image" class="h-64 mb-2">
-                    </router-link>
-                    <div class="w-3/5">
-                      <router-link :to="`/books/${book.id}`"  class="text-lg font-bold text-black hover:text-gray-700 mb-3">
-                        {{ book.title }}
-                      </router-link>
-                      <div class="text-gray-600">{{ book.author }}</div>
-                    </div>
+                    <book-listing :book="book"></book-listing>
                   </div>
                 </div>
               </template>
             </ApolloQuery>
-          </div>
         </div>
       </div>
     </div>
@@ -110,7 +84,7 @@
     
     
 
-  <div v-if="selectedCategory === 'all'">
+  <!-- <div v-if="selectedCategory === 'all'">
     <ApolloQuery :query="query">
       <template slot-scope="{ result: { data }, isLoading }">
         <div v-if="isLoading">Loading...</div>
@@ -159,7 +133,7 @@
         </div>
       </template>
     </ApolloQuery>
-  </div>
+  </div> -->
 
   </div>
 </template>
@@ -170,7 +144,7 @@ import categoryQuery from '@/graphql/queries/Category.gql';
 import booksQuery from '@/graphql/queries/Books.gql';
 import categoriesQuery from '@/graphql/queries/Categories.gql';
 import booksFeaturedQuery from '@/graphql/queries/BooksFeatured.gql';
-
+import BookListing from '../components/BookListing.vue';
 
 export default {
   name: 'HomeView',
@@ -185,6 +159,10 @@ export default {
       query: booksQuery,
       categories : []
     }
+  },
+  components: {
+
+    BookListing
   },
   methods: {
     selectCategory(category)

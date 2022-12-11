@@ -12,7 +12,6 @@
       </div>
     </div>
     <router-view/>
-    <p class="bg-black text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, quas dicta recusandae, officia sapiente doloribus nobis architecto quibusdam aperiam earum incidunt vero placeat provident beatae optio pariatur labore laudantium. Reiciendis?</p>
   </div>
 </template>
 
