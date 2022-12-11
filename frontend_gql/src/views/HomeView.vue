@@ -125,7 +125,6 @@ export default {
         this.query = categoryQuery;
       }
       this.selectedCategory = category;
-      console.log(this.selectedCategory, this.query) 
     }
   }
 }
