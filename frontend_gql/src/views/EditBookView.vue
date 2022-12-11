@@ -50,7 +50,7 @@
 <script>
 import EditBook from '@/graphql/mutations/EditBook.gql';
 import Book from '@/graphql/queries/Book.gql';
-import gql from 'graphql-tag'
+
 export default {
     name: "EditBookView",
     data() {
@@ -100,7 +100,7 @@ export default {
                     }
                 }
             },
-            result({ data, loading, networkStatus }) {
+            result({ data }) {
                 this.title = data.book.title
                 this.author = data.book.author
                 this.image = data.book.image
